@@ -24,12 +24,12 @@ namespace Assignment_1.Controllers
             {
                 return NotFound();
             }
-            return await _context.UserManagements.ToListAsync();
+            return await _context.UserManagements.OrderBy(x=>x.Username).ToListAsync();
         }
 
         // GET: api/UserManager/abcd
         [HttpGet("{username}")]
-        public async Task<ActionResult<UserManagement>> GetTodotask(string username)
+        public async Task<ActionResult<UserManagement>> GetUserInfo(string username)
         {
             if (_context.UserManagements == null)
             {
@@ -47,7 +47,7 @@ namespace Assignment_1.Controllers
         // POST: api/UserManager
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<UserManagement>> PostTodotask(UserManagement userDate)
+        public async Task<ActionResult<UserManagement>> RegisterUser(UserManagement userDate)
         {
             if (_context.UserManagements == null)
             {
